@@ -1,14 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Lora } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/custom/navbar";
+import Footer from "@/components/custom/footer";
+import { ThemeProvider } from "@/components/providers";
+import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+
+const fontInter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fontLora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+});
+
+const fontJetBrains = JetBrains_Mono({
+  variable: "--font-jetBrains",
   subsets: ["latin"],
 });
 
@@ -23,11 +33,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${fontInter.variable} ${fontLora.variable} ${fontJetBrains.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+        <section className="grid grid-flow-row grid-rows-[auto_1fr_auto] max-w-2xl w-screen m-auto border min-h-screen font-sans tracking-tight">
+          <Navbar/>
+            {children}
+          <Footer/>
+        </section>
+        <Toaster/>
+      </ThemeProvider>
       </body>
     </html>
   );
