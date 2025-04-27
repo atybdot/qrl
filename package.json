@@ -1,6 +1,6 @@
 {
-  "name": "qrcode-2",
-  "version": "0.1.0",
+  "name": "qrl",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
